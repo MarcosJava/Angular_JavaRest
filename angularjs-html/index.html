@@ -3,17 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title></title>
+	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
 	<script src="js/libs/angular.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/controllers/FotosController.js"></script>
 </head>
-<body>
+<body ng-controller="FotosController">
 	<div class="container">
-		<h1 class="text-center"> Aula Angular =D </h1>		
-		<img src="http://images.tcdn.com.br/img/img_prod/388802/2159_1_20150211093557.jpg">
-	</div>
+		<h1 class="text-center"> Angular </h1>		
+		<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">
+	</div><!-- Fim container-->
+
 
 </body>
 </html>
