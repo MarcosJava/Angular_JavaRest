@@ -12,10 +12,22 @@
 </head>
 <body ng-controller="FotosController">
 	<div class="container">
-		<h1 class="text-center"> Angular </h1>		
-		<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">
+		
+		<div class="jumbotron">
+			<h1 class="text-center"> Angular </h1>		
+		</div>
+		
+		<div class="panel panel-default" ng-repeat="foto in fotos">
+			<div class="panel-heading">
+				<h1>{{foto.titulo}}</h1>
+			</div>
+			<div class="panel-body">
+				<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">				
+			</div>
+		</div> <!-- Fim Painel -->
+
 	</div><!-- Fim container-->
 
 
 </body>
-</html>
+</html>	
