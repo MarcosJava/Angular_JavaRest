@@ -1,4 +1,4 @@
-package br.com.mfelipesp.argularws.models;
+package br.com.mfelipesp.angularws.models;
 
 public class HelloWorld {
 	private long id;

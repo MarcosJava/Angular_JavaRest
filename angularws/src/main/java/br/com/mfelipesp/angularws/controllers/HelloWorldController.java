@@ -1,4 +1,4 @@
-package br.com.mfelipesp.argularws.controllers;
+package br.com.mfelipesp.angularws.controllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.mfelipesp.argularws.models.HelloWorld;
+import br.com.mfelipesp.angularws.models.HelloWorld;
 
 @RestController
 public class HelloWorldController {

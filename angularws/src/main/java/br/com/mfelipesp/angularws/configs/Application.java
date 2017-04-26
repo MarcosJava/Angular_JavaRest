@@ -1,4 +1,4 @@
-package br.com.mfelipesp.argularws.configs;
+package br.com.mfelipesp.angularws.configs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,4 +9,6 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+    
+   
 }
