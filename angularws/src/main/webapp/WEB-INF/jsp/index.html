@@ -9,33 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="css/efeitos.css">
 	<script src="js/libs/angular.min.js"></script>
 	<script src="js/libs/angular-animate.min.js"></script>
-	<script src="js/libs/angular-route.min.js"></script>
+	<script src="js/libs/angular-ui-router.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/controllers/FotosController.js"></script>
 	<script src="js/directives/minhas-diretivas.js"></script>
 </head>
-<body ng-controller="FotosController">
-	<div class="container">
-		<div class="jumbotron">
-	<h1 class="text-center"> Angular Learning</h1>		
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<form>
-			<input ng-model="filtro" 
-				   ng-model-options="{debounce: 1000}" 
-				   class="form-control" placeholder="filtrar">
-		</form>
-	</div>
-</div>
-
-<div class="row">
-	<meu-painel class="col-md-2 painel-animado" 
-				ng-repeat="foto in fotos | filter: filtro"
-				titulo="{{foto.titulo}}">
-		<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">
-	</meu-painel>	
-</div>
-	</div><!-- Fim container-->
+<body>
+ 	<ui-view></ui-view>
 </body>
 </html>	

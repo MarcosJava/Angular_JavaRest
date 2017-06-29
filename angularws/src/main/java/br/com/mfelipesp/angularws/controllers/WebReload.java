@@ -13,7 +13,7 @@ public class WebReload {
 	@GetMapping("/")
     public String index() {	
 		log.info("chegou");
-		return "index.html";		
+		return "/index.html";		
     }
 
 }
