@@ -1,18 +1,23 @@
 angular.module('alurapic').controller('FotosController', function($scope, $http){	
 	
-	$scope.fotos = [];
+	$scope.fotos = [
+		titulo: "maria",
+		url: "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"
+	];
+	$scope.filtro = '';
 /*
-	$http.get('/localhost:8080/fotos/')
-		.success(function(fotos){
+
+$http.get('http://localhost:8080/fotos/')
+		.success(function(fotos) {
 			$scope.fotos = fotos;
-		}).error(function(erro){
+		})
+		.error(function(erro){
 			console.log(erro);
 		});
+		
 
-	console.log($scope.fotos);
-*/
-	
-	var promise = $http.get('http://localhost:8080/fotos/');
+
+var promise = $http.get('http://localhost:8080/fotos/');
 	promise.then(function(retorno){
 		$scope.fotos = retorno.data;
 		console.log(retorno.data);
@@ -20,4 +25,7 @@ angular.module('alurapic').controller('FotosController', function($scope, $http)
 		console.log(error);
 	});	
 	
+	*/
+
+
 });

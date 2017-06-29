@@ -6,28 +6,36 @@
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="css/efeitos.css">
 	<script src="js/libs/angular.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/controllers/FotosController.js"></script>
+	<script src="js/directives/minhas-diretivas.js"></script>
+	<script src="js/libs/angular-animate.min.js"></script>
+	<script src="js/libs/angular-route.min.js"></script>
 </head>
 <body ng-controller="FotosController">
 	<div class="container">
-		
 		<div class="jumbotron">
-			<h1 class="text-center"> Angular </h1>		
-		</div>
-		
-		<div class="panel panel-default" ng-repeat="foto in fotos">
-			<div class="panel-heading">
-				<h1>{{foto.titulo}}</h1>
-			</div>
-			<div class="panel-body">
-				<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">				
-			</div>
-		</div> <!-- Fim Painel -->
+	<h1 class="text-center"> Angular </h1>		
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form>
+			<input ng-model="filtro" 
+				   ng-model-options="{debounce: 1000}" 
+				   class="form-control" placeholder="filtrar">
+		</form>
+	</div>
+</div>
 
+<div class="row">
+	<meu-painel class="col-md-2 painel-animado" 
+				ng-repeat="{foto in fotos | filter: filtro}" 
+				titulo="{{foto.titulo}}">
+		<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">		
+	</meu-painel>	
+</div>
 	</div><!-- Fim container-->
-
-
 </body>
 </html>	
