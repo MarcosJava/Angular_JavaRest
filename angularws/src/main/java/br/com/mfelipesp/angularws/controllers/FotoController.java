@@ -23,9 +23,9 @@ public class FotoController {
 		log.info("Get in Foto");
 		 List<Foto> fotos = new ArrayList<>();
 		 fotos.add(new Foto("Leão", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
-		 fotos.add(new Foto("Leão 1", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
-		 fotos.add(new Foto("Leão 2", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
-		 fotos.add(new Foto("Leão 3", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));		
+		 fotos.add(new Foto("Ronaldo Fenomeno", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
+		 fotos.add(new Foto("Cristiano Ronaldo", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
+		 fotos.add(new Foto("Ronaldinho Gaucho", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));		
 		 return fotos;
     }
 
