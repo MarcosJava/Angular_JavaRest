@@ -23,15 +23,15 @@
 	<div class="col-md-12">
 		<form>
 			<input ng-model="filtro" 
-				   ng-model-options="{debounce: 500}" 
+				   ng-model-options="{debounce: 1000}" 
 				   class="form-control" placeholder="filtrar">
 		</form>
 	</div>
 </div>
 
 <div class="row">
-	<meu-painel class="col-md-2" 
-				ng-repeat="foto in fotos | filter: filtro" 
+	<meu-painel class="col-md-2 painel-animado" 
+				ng-repeat="foto in fotos | filter: filtro"
 				titulo="{{foto.titulo}}">
 		<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">
 	</meu-painel>	
