@@ -21,7 +21,12 @@ app.config(function($stateProvider, $urlRouterProvider){
 			name : 'cadastrarFoto',
 			url : '/fotos/new',
 			templateUrl : 'partials/foto.html',
-			controller: 'FotosController'
+			controller: 'FotoCadastrarController'
+		}).state({
+			name : 'editarFoto',
+			url : '/fotos/edit/:fotoId',
+			templateUrl : 'partials/foto.html',
+			controller: 'FotoCadastrarController'
 		});
 	
 	
@@ -38,6 +43,10 @@ app.config(function($stateProvider, $urlRouterProvider){
 //    	templateUrl : 'partials/principal.html',
 //		controller: 'FotosController'
 //    })
+//.when("/home/:usuarioID", {
+//templateUrl : 'partials/principal.html',
+//controller: 'FotosController'
+//})
 //	  .otherwise({redirectTo: '/'});
 //});
 

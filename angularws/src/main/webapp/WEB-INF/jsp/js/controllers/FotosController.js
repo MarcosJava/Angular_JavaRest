@@ -4,7 +4,7 @@ app.controller('FotosController', function($scope, $http){
 	$scope.mensagem = '';
 	$http({
 	      method: 'GET',
-	      url: '/restApi/fotos/'
+	      url: '/fotos/'
 	   }).then(function (success){
 		   console.log(success);
 		   $scope.fotos = success.data;
@@ -12,19 +12,19 @@ app.controller('FotosController', function($scope, $http){
 		   console.log(erro);
 	   });
 	
-	$scope.submeter = function(){				
-		if($scope.formulario.$valid){			
-			$http({
-				method: 'POST',
-				url: '/restApi/fotos/',
-				data: $scope.foto			
-			}).then(function(sucess){
-				$scope.foto = {};
-				$scope.mensagem = 'Foto incluida com sucesso';
-			}),function(error){
-				$scope.mensagem = 'Não foi possivel incluir';
-			};
-			
-		} 		
-	};
+	
+	$scope.remover = function(foto){
+		//foto = angular.toJson(foto);
+		console.log(foto);
+		var url = '/fotos/'+ foto.id;
+		
+		$http({url: url, method: 'DELETE'}).then(function (success){
+			console.log(success.data);
+			var index = $scope.fotos.indexOf(foto);
+			$scope.fotos.splice(index,1);
+			$scope.mensagem = 'Foto ' + foto.titulo + ' removida com sucesso';
+		}, function (error){
+			console.log(error);
+		});
+	}
 });
