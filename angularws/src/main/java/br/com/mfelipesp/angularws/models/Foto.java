@@ -25,6 +25,11 @@ public class Foto {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	@Override
+	public String toString() {
+		return "Foto [titulo=" + titulo + ", url=" + url + "]";
+	}
 	
 
 }

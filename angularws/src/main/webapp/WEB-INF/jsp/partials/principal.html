@@ -1,13 +1,20 @@
-<div class="container">
+
 	<div class="jumbotron">
 		<h1 class="text-center"> Angular Learning</h1>		
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			<form>
-				<input ng-model="filtro" 
-					   ng-model-options="{debounce: 1000}" 
-					   class="form-control" placeholder="filtrar">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<a href="#!/fotos/new" class="btn btn-primary">Nova Foto</a>
+					</span>
+
+					<input ng-model="filtro" 
+						   ng-model-options="{debounce: 500}" 
+						   class="form-control" placeholder="filtrar">
+				</div>
+			
 			</form>
 		</div>
 	</div>
@@ -19,4 +26,3 @@
 			<img class="img-responsive center-block" src="{{foto.url}}"  alt="{{foto.titulo}}">
 		</meu-painel>	
 	</div>
-</div><!-- Fim container-->

@@ -1,0 +1,39 @@
+<div class="page-header text-center">
+	<h1>{{foto.titulo}}</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+<!-- Novalidade: retirando a validacao do html5 -->
+<form novalidate class="row" ng-submit="submeter()" name="formulario">
+	<div class="col-md-6">
+		<div class="form-group">
+			<label>Titulo</label>
+			<input ng-model="foto.titulo" class="form-control" name="titulo" required ng-maxlength="20"/>	
+			<span ng-show="formulario.titulo.$error.required" class="form-control alert-danger">
+				Titulo Obrigatorio
+			</span>
+			<span ng-show="formulario.titulo.$error.maxlength" class="form-control alert-danger">
+				Deve ter menos que 20 caracteres
+			</span>		
+		</div>
+		<div class="form-group">
+			<label>URL</label>
+			<input ng-model="foto.url" class="form-control" name="url" required />	
+			<span ng-show="formulario.$submitted && formulario.url.$error.required" class="form-control alert-danger">
+				URL Obrigatorio
+			</span>				
+		</div>
+		
+		<button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
+		Salvar
+		</button>
+		<a href="#!/" class="btn btn-primary">Voltar</a>		
+	</div>
+	
+	<div class="col-md-6">
+		<minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}"></minha-foto>
+	</div>
+	
+
+</form>

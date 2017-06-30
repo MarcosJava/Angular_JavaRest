@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: angularws
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: marcos.pinto
+Built-By: markFelipe
 Implementation-Vendor-Id: br.com.mfelipesp
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_73
 Implementation-URL: http://projects.spring.io/spring-boot/angularws/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
