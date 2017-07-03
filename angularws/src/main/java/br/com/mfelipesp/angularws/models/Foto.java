@@ -7,6 +7,7 @@ public class Foto implements Serializable {
 	private int id;
 	private String titulo;
 	private String url;
+	private Grupo grupo;
 	
 	public Foto() {
 	}
@@ -39,10 +40,17 @@ public class Foto implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
 
 	@Override
 	public String toString() {
-		return "Foto [id=" + id + ", titulo=" + titulo + ", url=" + url + "]";
+		return "Foto [id=" + id + ", titulo=" + titulo + ", url=" + url + ", grupo=" + grupo + "]";
 	}
 
 	@Override

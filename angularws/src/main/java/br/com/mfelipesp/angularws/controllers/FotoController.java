@@ -1,10 +1,10 @@
 package br.com.mfelipesp.angularws.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mfelipesp.angularws.models.Foto;
+import br.com.mfelipesp.angularws.services.interfaces.FotoService;
 
 @CrossOrigin
 @RestController
@@ -26,78 +27,51 @@ import br.com.mfelipesp.angularws.models.Foto;
 public class FotoController {
 	
 	private final Logger log = LoggerFactory.getLogger(FotoController.class);
-	private static List<Foto> fotos = new ArrayList<Foto>();
+	
+	@Autowired
+	private FotoService fotoService;
 	
 	public FotoController() {
-		fotos = new ArrayList<>();
-		fotos.add(new Foto(1, "Leão", "http://pt.seaicons.com/wp-content/uploads/2015/07/Young-Lion-icon.png"));
-		fotos.add(new Foto(2, "Ronaldo Fenomeno", "https://i0.wp.com/www.footballwood.com/wp-content/uploads/2013/09/Ronaldo.jpg"));
-		fotos.add(new Foto(3, "Cristiano Ronaldo", "https://lh3.googleusercontent.com/-tM_e_Q2WOhw/AAAAAAAAAAI/AAAAAAAAAAA/ynm9Ty3pEbc/photo.jpg"));
-		fotos.add(new Foto(4, "Ronaldinho Gaucho", "http://m.lance.com.br/files/mobile-article-media/uploads/2016/12/14/5851ae5759fe7.jpeg"));		
+				
 	}
 	
 	@GetMapping("/")
     public List<Foto> getFotos() {
 		log.info("Get in Foto");
-		 return fotos;
+		 return fotoService.lstFotos();
     }
 	
 	@GetMapping("/{id}")
     public Foto getFotoById(@PathVariable(value="id", required=true) int id) {		
 		log.info(String.format("Get By Id %d in Foto", id));		
-		return fotos.stream().filter(p -> p.getId() == id).findFirst().get();		
+		return fotoService.lstFotosById(id);		
     }
 	
 	@PostMapping("/")
-    public ResponseEntity saveFoto(@RequestBody Foto foto) {		
-		int id = fotos.stream()
-					   .mapToInt(f -> f.getId())
-					   .max()
-					   .orElse(0);
-		
-		++id;
-		foto.setId(id);
-		log.info("Post Foto");
-		log.info(foto.toString());
-		fotos.add(foto);
+    public ResponseEntity saveFoto(@RequestBody Foto foto) {			
+		log.info("Post Foto ::" + foto.toString());
+		fotoService.cadastrarFoto(foto);
 		return new ResponseEntity(foto, HttpStatus.OK);
     }
 	
 	@PutMapping("/")
     public ResponseEntity alterarFoto(@RequestBody Foto foto) {
-		
-		
-		if(foto.getId() <= 0) return null;
-		
-		Foto fotoAtual = fotos.stream()
-					   .filter(f -> f.getId() == foto.getId())
-					   .findFirst()
-					   .orElse(null);
-		
-		if(fotoAtual == null) return null;
-		
-		fotos.remove(fotoAtual);
-		
-		fotos.add(foto);
-		return new ResponseEntity(foto, HttpStatus.OK);
+		try {
+			fotoService.editarFoto(foto);
+			return new ResponseEntity(foto, HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("",e);
+			return new ResponseEntity(foto, HttpStatus.BAD_REQUEST);
+
+		}		
     }
 	
 	
 	@DeleteMapping("/{id}")
 	public String deleteFoto(@PathVariable int id) {		
 		log.info("Delete Foto do id = " + id);		
-		String retorno = "Sucesso";
-		Foto foto = fotos.stream()
-                .filter(f -> id == f.getId())
-                .findFirst()
-                .orElse(null);
-		
-		if(foto == null)
-			retorno = "Error";
-		
-		log.info(foto.toString());
-		fotos.remove(foto);		
-		return retorno;
+		fotoService.deletarFoto(id);
+		return "Sucesso";
 	}
 
 }

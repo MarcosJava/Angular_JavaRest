@@ -13,7 +13,11 @@ app.controller('FotoCadastrarController', function ($scope, $http, $stateParams)
 		});
 	}
 	
-	$scope.submeter = function(){				
+	$scope.submeter = function(){			
+		
+		var foto = angular.toJson($scope.foto);
+		console.log(foto);
+		
 		if($scope.formulario.$valid){
 			var method = '';
 			var msg = '';
@@ -27,7 +31,7 @@ app.controller('FotoCadastrarController', function ($scope, $http, $stateParams)
 			$http({
 				method: method,
 				url: '/fotos/',
-				data: $scope.foto			
+				data:  $scope.foto			
 			}).then(function(sucess){
 				$scope.foto = $scope.foto.id == null ? {} : $scope.foto;
 				$scope.mensagem = msg;

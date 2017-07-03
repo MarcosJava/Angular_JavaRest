@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WebReload {
 	
 	private final Logger log = LoggerFactory.getLogger(WebReload.class);
-//	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//    public void index(HttpServletResponse response) {	
-//		
-//		response.setContentType("text/html");
-//	    response.setCharacterEncoding("UTF-8");
-//		try {
-//			response.sendRedirect("index.html#!/");
-//		} catch (IOException e) {
-//			log.error("Error ao index", e);
-//		}
-//		
-//    }
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+    public void index(HttpServletResponse response) {	
+		
+		response.setContentType("text/html");
+	    response.setCharacterEncoding("UTF-8");
+		try {
+			response.sendRedirect("/index.html");
+		} catch (IOException e) {
+			log.error("Error ao index", e);
+		}
+		
+    }
 
 }
