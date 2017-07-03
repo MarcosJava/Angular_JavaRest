@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,8 +49,7 @@ public class FotoController {
     }
 	
 	@PostMapping("/")
-    public ResponseEntity saveFoto(@RequestBody Foto foto) {
-		
+    public ResponseEntity saveFoto(@RequestBody Foto foto) {		
 		int id = fotos.stream()
 					   .mapToInt(f -> f.getId())
 					   .max()
@@ -59,6 +59,25 @@ public class FotoController {
 		foto.setId(id);
 		log.info("Post Foto");
 		log.info(foto.toString());
+		fotos.add(foto);
+		return new ResponseEntity(foto, HttpStatus.OK);
+    }
+	
+	@PutMapping("/")
+    public ResponseEntity alterarFoto(@RequestBody Foto foto) {
+		
+		
+		if(foto.getId() <= 0) return null;
+		
+		Foto fotoAtual = fotos.stream()
+					   .filter(f -> f.getId() == foto.getId())
+					   .findFirst()
+					   .orElse(null);
+		
+		if(fotoAtual == null) return null;
+		
+		fotos.remove(fotoAtual);
+		
 		fotos.add(foto);
 		return new ResponseEntity(foto, HttpStatus.OK);
     }
