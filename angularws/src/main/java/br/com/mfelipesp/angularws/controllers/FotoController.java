@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.mfelipesp.angularws.models.Foto;
 import br.com.mfelipesp.angularws.services.interfaces.FotoService;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 @CrossOrigin
 @RestController
 @RequestMapping("/fotos")
-@SuppressWarnings({ "rawtypes", "unchecked" })
 public class FotoController {
 	
 	private final Logger log = LoggerFactory.getLogger(FotoController.class);
@@ -35,30 +35,27 @@ public class FotoController {
 				
 	}
 	
-	@GetMapping("/")
+	@GetMapping
     public List<Foto> getFotos() {
 		log.info("Get in Foto");
 		 return fotoService.lstFotos();
     }
 	
-	@GetMapping("/{id}")
-    public Foto getFotoById(@PathVariable(value="id", required=true) int id) {		
-		log.info(String.format("Get By Id %d in Foto", id));		
-		return fotoService.lstFotosById(id);		
-    }
-	
-	@PostMapping("/")
+	@PostMapping
     public ResponseEntity saveFoto(@RequestBody Foto foto) {			
 		log.info("Post Foto ::" + foto.toString());
 		fotoService.cadastrarFoto(foto);
 		return new ResponseEntity(foto, HttpStatus.OK);
     }
 	
-	@PutMapping("/")
+	@PutMapping
     public ResponseEntity alterarFoto(@RequestBody Foto foto) {
 		try {
-			fotoService.editarFoto(foto);
-			return new ResponseEntity(foto, HttpStatus.OK);
+			if (foto.getId() > 0){				
+				fotoService.editarFoto(foto);
+				return new ResponseEntity(foto, HttpStatus.OK);				
+			}
+			return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			log.error("",e);
 			return new ResponseEntity(foto, HttpStatus.BAD_REQUEST);
@@ -73,5 +70,11 @@ public class FotoController {
 		fotoService.deletarFoto(id);
 		return "Sucesso";
 	}
+	
+	@GetMapping("/{id}")
+    public Foto getFotoById(@PathVariable(value="id", required=true) int id) {		
+		log.info(String.format("Get By Id %d in Foto", id));		
+		return fotoService.lstFotosById(id);		
+    }
 
 }

@@ -43,7 +43,7 @@ public class FotoServiceImpl implements FotoService{
 
 	@Override
 	public void editarFoto(Foto foto) throws Exception {
-		if(foto.getId() <= 0) throw new Exception();
+		if(foto.getId() == 0) throw new Exception();
 		fotoRepository.editarFoto(foto);
 	}
 

@@ -1,4 +1,4 @@
-app.controller('FotoCadastrarController', function ($scope, $http, $stateParams){
+app.controller('FotoCadastrarController', function ($scope, $stateParams, recursoFoto, cadastrarFoto){
 	
 	$scope.mensagem = '';
 	
@@ -6,39 +6,23 @@ app.controller('FotoCadastrarController', function ($scope, $http, $stateParams)
 	
 	if(id){
 		var url = "/fotos/" + id;
-		$http({method: 'GET', url:url}).then(function(success){
-			$scope.foto = success.data;
-		}, function(error){
+		recursoFoto.get({fotoId: $stateParams.fotoId}, function(sucesso){
+			$scope.foto = sucesso;
+		}, function(erro){
 			$scope.mensagem = 'Contém error !';
 		});
 	}
 	
 	$scope.submeter = function(){			
-		
-		var foto = angular.toJson($scope.foto);
-		console.log(foto);
-		
+		//var foto = angular.toJson($scope.foto);
+		//console.log(foto);
 		if($scope.formulario.$valid){
-			var method = '';
-			var msg = '';
-			if($scope.foto.id){
-				method = 'PUT';
-				msg = 'Foto alterada com sucesso';
-			}else{
-				method = 'POST';
-				msg = 'Foto incluida com sucesso';
-			}
-			$http({
-				method: method,
-				url: '/fotos/',
-				data:  $scope.foto			
-			}).then(function(sucess){
-				$scope.foto = $scope.foto.id == null ? {} : $scope.foto;
-				$scope.mensagem = msg;
-			}),function(error){
-				$scope.mensagem = 'Não foi possivel concluir a operação';
-			};
-			
+			cadastrarFoto.cadastrar($scope.foto).then(function(sucesso){
+				$scope.mensagem = sucesso.mensagem;
+				if(sucesso.inclusao) $scope.foto = {};
+			}).catch(function(erro){
+				$scope.mensagem = erro.mensagem;
+			});			
 		} 		
 	};
 
