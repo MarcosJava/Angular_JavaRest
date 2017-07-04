@@ -5,8 +5,10 @@ app.controller('FotoCadastrarController', function ($scope, $stateParams, recurs
 	var id = $stateParams.fotoId;
 	
 	if(id){
+		
 		var url = "/fotos/" + id;
 		recursoFoto.get({fotoId: $stateParams.fotoId}, function(sucesso){
+			console.log(sucesso);
 			$scope.foto = sucesso;
 		}, function(erro){
 			$scope.mensagem = 'Contém error !';
