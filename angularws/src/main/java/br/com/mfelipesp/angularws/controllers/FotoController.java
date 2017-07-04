@@ -38,7 +38,7 @@ public class FotoController {
 	@GetMapping
     public List<Foto> getFotos() {
 		log.info("Get in Foto");
-		 return fotoService.lstFotos();
+		return fotoService.lstFotos();
     }
 	
 	@PostMapping
@@ -65,10 +65,9 @@ public class FotoController {
 	
 	
 	@DeleteMapping("/{id}")
-	public String deleteFoto(@PathVariable int id) {		
+	public void deleteFoto(@PathVariable int id) {		
 		log.info("Delete Foto do id = " + id);		
 		fotoService.deletarFoto(id);
-		return "Sucesso";
 	}
 	
 	@GetMapping("/{id}")

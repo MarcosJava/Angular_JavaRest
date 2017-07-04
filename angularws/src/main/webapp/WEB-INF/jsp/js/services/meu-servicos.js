@@ -8,15 +8,19 @@ app.factory('recursoFoto', function($resource) {
 		}
 	});
 
-}).factory('cadastrarFoto', function(recursoFoto, $q) {
+}).factory('cadastrarFoto', function(recursoFoto, $q, $rootScope) {
 	
-
+	var evento = 'fotoCadastrada';
 	var servico = {};
+	
+	
+	
 	servico.cadastrar = function(foto) {
 		return $q(function(resolve, reject) {
 			
 			if (foto.id) { //alterar
 				recursoFoto.update(foto, function(sucesso) {
+					$rootScope.$broadcast(evento);
 					resolve({
 						mensagem : 'Foto ' + foto.titulo + ' atualizada com sucesso',
 						inclusao : false
@@ -27,6 +31,7 @@ app.factory('recursoFoto', function($resource) {
 
 			} else { //cadastrar
 				recursoFoto.salva(foto, function(sucesso) {
+					$rootScope.$broadcast(evento);
 					resolve({
 						mensagem : 'Foto ' + foto.titulo + ' incluida com sucesso',
 						inclusao : true
