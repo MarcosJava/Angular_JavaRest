@@ -19,4 +19,17 @@ angular.module('minhasDiretivas',[]).directive('meuPainel', function() {
 		template: '<img class="img-responsive center-block" src="{{url}}"  alt="{{titulo}}">'
 	};
 	
+}).directive('meuFocus', function(){
+	return {
+		restric: "A",
+		scope: {focado: "="},
+		link : function(scope, element){
+			scope.$watch('focado',function(){
+				if(scope.focado){
+					element[0].focus();
+					scope.focado = false;
+				}
+			});
+		}
+	}
 });

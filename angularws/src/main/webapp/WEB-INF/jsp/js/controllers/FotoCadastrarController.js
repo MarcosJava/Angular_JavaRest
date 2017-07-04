@@ -20,6 +20,7 @@ app.controller('FotoCadastrarController', function ($scope, $stateParams, recurs
 			cadastrarFoto.cadastrar($scope.foto).then(function(sucesso){
 				$scope.mensagem = sucesso.mensagem;
 				if(sucesso.inclusao) $scope.foto = {};
+				$scope.focado = true;
 			}).catch(function(erro){
 				$scope.mensagem = erro.mensagem;
 			});			
