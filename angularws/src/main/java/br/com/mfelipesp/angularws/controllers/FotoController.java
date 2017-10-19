@@ -1,5 +1,6 @@
 package br.com.mfelipesp.angularws.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -73,7 +74,9 @@ public class FotoController {
 	@GetMapping("/{id}")
     public Foto getFotoById(@PathVariable(value="id", required=true) int id) {		
 		log.info(String.format("Get By Id %d in Foto", id));		
-		return fotoService.lstFotosById(id);		
+		Foto f =  fotoService.lstFotosById(id);
+		f.setData(new Date());
+		return f;
     }
 
 }

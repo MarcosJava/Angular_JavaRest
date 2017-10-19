@@ -1,6 +1,7 @@
 package br.com.mfelipesp.angularws.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Foto implements Serializable {
 	
@@ -8,6 +9,7 @@ public class Foto implements Serializable {
 	private String titulo;
 	private String url;
 	private Grupo grupo;
+	private Date data;
 	
 	public Foto() {
 	}
@@ -16,6 +18,15 @@ public class Foto implements Serializable {
 		this.id = id;
 		this.titulo = titulo;
 		this.url = url;
+	}
+	
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public int getId() {

@@ -1,4 +1,5 @@
-app.factory('recursoFoto', function($resource) {
+app
+.factory('recursoFoto', function($resource) {
 	return $resource('/fotos/:fotoId', null, {
 		update : {
 			method : 'PUT'
@@ -13,14 +14,12 @@ app.factory('recursoFoto', function($resource) {
 	var evento = 'fotoCadastrada';
 	var servico = {};
 	
-	
-	
-	servico.cadastrar = function(foto) {
+	servico.merge = function(foto) {
 		return $q(function(resolve, reject) {
 			
 			if (foto.id) { //alterar
 				recursoFoto.update(foto, function(sucesso) {
-					$rootScope.$broadcast(evento);
+					$rootScope.$broadcast(evento);					
 					resolve({
 						mensagem : 'Foto ' + foto.titulo + ' atualizada com sucesso',
 						inclusao : false
@@ -46,7 +45,17 @@ app.factory('recursoFoto', function($resource) {
 	};		
 
 	return servico;
+}).factory('listaGrupos', function($resource) {
+	return $resource('/grupos/:fotoId', null);
 
-
-	
+}).factory('dbGruposSelected', function(){
+	var grupo = {id: 0, nome: ""};
+	return {
+        getGrupo : function () { 
+            return grupo; 
+        },
+        setGrupo:function(mgrupo){
+            grupo = mgrupo;
+        }
+    }      
 });

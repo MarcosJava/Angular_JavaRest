@@ -1,15 +1,16 @@
-app.controller('FotoCadastrarController', function ($scope, $stateParams, recursoFoto, cadastrarFoto){
+app.controller('FotoCadastrarController', function ($scope, $stateParams, recursoFoto, cadastrarFoto, dbGruposSelected){
 	
 	$scope.mensagem = '';
 	
-	var id = $stateParams.fotoId;
-	
+	var id = $stateParams.fotoId;		
 	if(id){
 		
-		var url = "/fotos/" + id;
 		recursoFoto.get({fotoId: $stateParams.fotoId}, function(sucesso){
 			console.log(sucesso);
 			$scope.foto = sucesso;
+			if(sucesso.grupo != undefined)
+				dbGruposSelected.setGrupo(sucesso.grupo);
+			
 		}, function(erro){
 			$scope.mensagem = 'Contém error !';
 		});
@@ -19,8 +20,8 @@ app.controller('FotoCadastrarController', function ($scope, $stateParams, recurs
 		//var foto = angular.toJson($scope.foto);
 		//console.log(foto);
 		if($scope.formulario.$valid){
-			cadastrarFoto.cadastrar($scope.foto).then(function(sucesso){
-				$scope.mensagem = sucesso.mensagem;
+			cadastrarFoto.merge($scope.foto).then(function(sucesso){
+				$scope.mensagem = sucesso.mensagem;				
 				if(sucesso.inclusao) $scope.foto = {};				
 			}).catch(function(erro){
 				$scope.mensagem = erro.mensagem;

@@ -23,7 +23,7 @@ public class GrupoController {
 	@Autowired
 	GrupoService grupoService;
 	
-	@GetMapping("/")
+	@GetMapping
 	public List<Grupo> getGrupos(){
 		log.info("Get in Grupo");
 		return grupoService.lstGrupos();

@@ -8,15 +8,15 @@ angular.module('minhasDiretivas',[]).directive('meuPainel', function() {
 	ddo.scope = {
 		titulo:'@'
 	};
-	ddo.transclude = true;
+	ddo.transclude = true; //transclude: inseri no meio do conteudo da diretiva, mas no meu-painel tem a area onde o meio vai ser posto na directiva
 	ddo.templateUrl = 'js/directives/meu-painel.html';
 
 	return ddo;
 }).directive('minhaFoto', function(){	
 	return {
-		restric: "AE",
+		restric: "AE",		
 		scope: {url: '@', titulo: '@'},
-		template: '<img class="img-responsive center-block" src="{{url}}"  alt="{{titulo}}">'
+		template: '<img class="img-responsive center-block" src="{{url}}"  alt="{{titulo}}"></img>'
 	};
 	
 }).directive('meuFocus', function(){
