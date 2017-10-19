@@ -20,6 +20,13 @@ public class Foto implements Serializable {
 		this.url = url;
 	}
 	
+	public Foto(int id, String titulo, String url, Grupo grupo) {
+		this.id = id;
+		this.titulo = titulo;
+		this.url = url;
+		this.grupo = grupo;
+	}
+	
 
 	public Date getData() {
 		return data;

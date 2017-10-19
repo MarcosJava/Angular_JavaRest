@@ -29,7 +29,7 @@
 			<label>Numero</label>
 			<input ng-model="foto.numero" class="form-control" name="numero" type="text" required ui-mask="99"/>
 			{{foto.numero}}
-			<span ng-show="foto.numero > 99" class="form-control alert-danger">
+			<span ng-show="foto.numero > 99 || !formulario.numero.$valid" class="form-control alert-danger">
  				Data loka
  			</span>					
 		</div>
@@ -44,9 +44,8 @@
 		
 		<div class="form-group">
 			<label>Grupo</label>
-			<select name="grupo" class="form-control" 
-					ng-controller="GrupoController" 
-					ng-options="grupo as grupo.nome for grupo in grupos"
+			<select name="grupo" class="form-control" 					
+					ng-options="foto.grupo as grupo for grupo in foto.grupo"
 					ng-model="foto.grupo">
 				<option value=''>Selecione um grupo</option>
 			</select>
